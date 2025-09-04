@@ -1,21 +1,23 @@
-﻿👤 FIAP Cloud Users (FCU)
+<h2>﻿👤 FIAP Cloud Users (FCU)</h2>
 
-📚 Sobre o Projeto
+<u>📚 Sobre o Projeto</u>
 
 Fiap Cloud Users (FCU) é uma API de microsserviço desenvolvida dentro do ecossistema educacional da FIAP 
 (Faculdade de Informática e Administração Paulista).
 O objetivo é fornecer uma base sólida para gestão de usuários e autenticação/autorização via JWT, 
 aplicada em cenários de estudo e práticas de cloud computing, microsserviços e DevOps.
 
-⚙️ Tecnologias e Plataformas utilizadas
-	- .NET 8
-	- Visual Studio
-	- Azure
-	- EF Core
-	- ASP.NET Core
-	- Swagger
-	- Docker
-	- New Relic
+<li>
+	⚙️ Tecnologias e Plataformas utilizadas
+	<ul>.NET 8</ul>
+	<ul>Visual Studio</ul>
+	<ul>Azure</ul>
+	<ul>EF Core</ul>
+	<ul>ASP.NET Core</ul>
+	<ul>Swagger</ul>
+	<ul>Docker</ul>
+	<ul>New Relic</ul>
+</li>
 
 🛠️ Como Executar
 Usando Docker
