@@ -3,21 +3,21 @@
 <u>📚 Sobre o Projeto</u>
 
 Fiap Cloud Users (FCU) é uma API de microsserviço desenvolvida dentro do ecossistema educacional da FIAP 
-(Faculdade de Informática e Administração Paulista).
+(Faclidade de Informática e Administração Paliista).
 O objetivo é fornecer uma base sólida para gestão de usuários e autenticação/autorização via JWT, 
 aplicada em cenários de estudo e práticas de cloud computing, microsserviços e DevOps.
 
-<li>
+<ul>
 	⚙️ Tecnologias e Plataformas utilizadas
-	<ul>.NET 8</ul>
-	<ul>Visual Studio</ul>
-	<ul>Azure</ul>
-	<ul>EF Core</ul>
-	<ul>ASP.NET Core</ul>
-	<ul>Swagger</ul>
-	<ul>Docker</ul>
-	<ul>New Relic</ul>
-</li>
+	<li>.NET 8</li>
+	<li>Visual Studio</li>
+	<li>Azure</li>
+	<li>EF Core</li>
+	<li>ASP.NET Core</li>
+	<li>Swagger</li>
+	<li>Docker</li>
+	<li>New Relic</li>
+</ul>
 
 🛠️ Como Executar
 Usando Docker
@@ -29,26 +29,31 @@ No terminal, navegue até a raiz do projeto.
 
 Execute o comando abaixo para construir e iniciar os containers:
 
-docker-compose up -d --build
-
+<code>
+	docker-compose up -d --build
+</code>
 
 O serviço estará disponível em:
 
-http://localhost:5001/
-
+<code>
+	http://localhost:5001/
+</code>
 
 Para se autenticar, vá para o endpoint /api/auth/login e use as credenciais abaixo:
 
+<code>
 {
   "email": "admin@fiap.com.br",
   "password": "Admin1234!"
 }
-
+</code>
 
 Obs: Essas credenciais são criadas automaticamente para fins acadêmicos.
 
+<hr/>
 📄 Licença
 
 Este projeto está licenciado sob a licença MIT.
 
+<hr/>
 Feito com ❤️ para aprendizado em Cloud & Microsserviços! 🚀
