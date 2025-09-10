@@ -72,6 +72,8 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserGameLibraryRepository, UserGameLibraryRepository>();
+builder.Services.AddScoped<IUserGameLibraryServices, UserGameLibraryService>();
 builder.Services.AddSwaggerConfiguration();
 
 // ✅ Swagger

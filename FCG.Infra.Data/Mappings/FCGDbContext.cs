@@ -13,11 +13,15 @@ namespace FCG.Infra.Data.Context
         {
         }
 
+        public DbSet<UserGameLibrary> UserGameLibraries => Set<UserGameLibrary>();
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new UserMapping());
+
+            modelBuilder.ApplyConfiguration(new UserGameLibraryMapping());
         }
 
     }
