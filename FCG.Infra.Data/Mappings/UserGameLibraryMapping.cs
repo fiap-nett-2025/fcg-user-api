@@ -18,14 +18,19 @@ namespace FCG.Infra.Data.Mappings
             // PK composta (UserId + GameId) evita duplicatas
             builder.HasKey(x => new { x.UserId, x.GameId });
 
-            builder.Property(x => x.UserId).IsRequired().HasMaxLength(452);
+            builder.Property(x => x.UserId).IsRequired().HasMaxLength(450);
 
             builder.Property(x => x.GameId).IsRequired();
 
             builder.Property(x => x.AddedAt)
                 .IsRequired()
                 .HasDefaultValueSql("SYSUTCDATETIME()")
-                .ValueGeneratedOnAdd(); 
+                .ValueGeneratedOnAdd();
+
+            builder.HasOne(x => x.User)
+               .WithMany() // ou .WithMany(u => u.GameLibrary) se adicionou a coleção no User
+               .HasForeignKey(x => x.UserId)
+               .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

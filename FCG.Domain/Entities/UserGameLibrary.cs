@@ -6,7 +6,7 @@ public class UserGameLibrary
 	public string UserId { get; set; }
 	public int GameId { get; set; }
     public DateTime AddedAt { get; private set; } = DateTime.UtcNow;
-
+    public User User { get; set; } = default!;
     public UserGameLibrary(string userId, int gameId)
 	{
         ValidateUserId(userId);
