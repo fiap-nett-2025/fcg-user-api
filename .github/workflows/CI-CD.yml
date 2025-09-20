@@ -39,8 +39,10 @@ jobs:
   
   build-and-deploy:
     name: Deploy to Production
+    needs: test
+    if: success()
     runs-on: ubuntu-latest
-
+    
     steps:
       - uses: actions/checkout@v4
 
