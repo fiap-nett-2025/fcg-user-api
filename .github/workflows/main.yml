@@ -1,4 +1,4 @@
-name: Deploy to Azure Container Apps
+name: Pipeline CI/CD
 
 on:
   workflow_dispatch:
@@ -11,7 +11,34 @@ env:
   RESOURCE_GROUP: fcgUserApi
 
 jobs:
+  test:
+    name: Running Tests
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Download source
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Dependency Restore
+        run: dotnet restore
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Domain Tests
+        run: dotnet test ./FCG.Tests.Domain/FCG.Tests.Domain.csproj --configuration Release --no-build --verbosity normal
+
+      - name: Infra Tests
+        run: dotnet test ./FCG.Tests.Infra/FCG.Tests.Infra.csproj --configuration Release --no-build --verbosity normal
+
+  
   build-and-deploy:
+    name: Deploy to Production
     runs-on: ubuntu-latest
 
     steps:
