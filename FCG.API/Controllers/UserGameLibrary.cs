@@ -18,7 +18,7 @@ public class UserGameLibrary : ApiBaseController
         _userGameLibraryServices = userGameLibraryServices;
 	}
 
-    [HttpGet("get-all-games-from-user-library/{userId}")]
+    [HttpGet("{userId}")]
     public async Task<IActionResult> GetAllUserLibraryGames(string userId)
     {
         var userGameLibrary = await _userGameLibraryServices.GetAllGamesFromUserLibraryAsync(userId);
@@ -26,7 +26,7 @@ public class UserGameLibrary : ApiBaseController
         return Success(userGameLibrary, "Biblioteca de jogos do usuario retornada com sucesso");
     }
 
-    [HttpGet("get-specific-game-in-user-library/{userId}/game/{gameId:int}")]
+    [HttpGet("{userId}/game/{gameId:int}")]
     public async Task<IActionResult> GetOneGameFromUserLibrary(string userId, int gameId)
     {
         var item = await _userGameLibraryServices.GetOneGameFromUserLibraryAsync(userId, gameId);
@@ -34,24 +34,17 @@ public class UserGameLibrary : ApiBaseController
         return Success(item, "Jogo presente na biblioteca do usuário:");
     }
 
-    [HttpPost("add-game-to-user-library")]
-    public async Task<IActionResult> AddGameToUserLibrary(UpsertGameToUserLibrary model)
+    [HttpPost("{userId}/game/{gameId:int}")]
+    public async Task<IActionResult> AddGameToUserLibrary(string userId, int gameId)
     {
-        var item = await _userGameLibraryServices.AddGameToUserLibraryAsync(model);
+        var item = await _userGameLibraryServices.AddGameToUserLibraryAsync(userId, gameId);
         return CreatedResponse(item, "Jogo adcionado na biblioteca com sucesso.");
     }
 
-    [HttpDelete("remove-game-from-user-library/{userId}/game/{gameId:int}")]
+    [HttpDelete("{userId}/game/{gameId:int}")]
     public async Task<IActionResult> RemoveGameFromUserLibrary(string userId, int gameId)
     {
         await _userGameLibraryServices.DeleteGameInUserLibraryAsync(userId, gameId);
-        return NoContent();
-    }
-
-    [HttpDelete("remove-all-user-game-library-records/{userId}")]
-    public async Task<IActionResult> RemoveAllUserGameLibraryRecords(string userId)
-    {
-        await _userGameLibraryServices.DeleteAllUserGameLibraryRecordsAsync(userId);
         return NoContent();
     }
 }

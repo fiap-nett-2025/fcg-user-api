@@ -7,7 +7,7 @@ public interface IUserGameLibraryServices
 {
     Task<IEnumerable<UserGameLibraryDto>> GetAllGamesFromUserLibraryAsync(string userId);
     Task<UserGameLibraryDto> GetOneGameFromUserLibraryAsync(string userId, int gameId);
-    Task<UserGameLibraryDto> AddGameToUserLibraryAsync(UpsertGameToUserLibrary model);
+    Task<UserGameLibraryDto> AddGameToUserLibraryAsync(string userId, int gameId);
     Task UpdateGameInUserLibraryAsync(UpsertGameToUserLibrary model);
     Task DeleteGameInUserLibraryAsync(string userId, int GameId);
     Task DeleteAllUserGameLibraryRecordsAsync(string userId);

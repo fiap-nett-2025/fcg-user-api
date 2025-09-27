@@ -25,7 +25,7 @@ namespace FCG.Application.Services
             _userRepository = userRepository;
         }
 
-        public async Task<UserGameLibraryDto> AddGameToUserLibraryAsync(UpsertGameToUserLibrary model)
+        public async Task<UserGameLibraryDto> AddGameToUserLibraryAsync(string userId, int gameId)
         {
             //checar se usuario existe
             /*var userExist = _userRepository.GetByIdAsync(model.UserId);
@@ -36,7 +36,7 @@ namespace FCG.Application.Services
             //checar se o jogo ja nao esta adcionado
 
 
-            var userGameLibrary = new UserGameLibrary(model.UserId, model.GameId);
+            var userGameLibrary = new UserGameLibrary(userId, gameId);
 
             await _userGameLibraryRepository.AddGameToUserLibraryAsync(userGameLibrary);
 
