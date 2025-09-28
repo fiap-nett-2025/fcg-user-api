@@ -69,7 +69,7 @@ jobs:
         with:
           push: true
           tags: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}:${{ github.sha }}
-          file: FCG.API/Dockerfile
+          file: FCG.User.API/Dockerfile
 
       - name: Azure Login
         uses: azure/login@v2
