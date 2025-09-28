@@ -10,7 +10,7 @@ services:
   fcg-user-api:
     build:
       context: .
-      dockerfile: ./FCG.API/Dockerfile
+      dockerfile: ./FCG.User.API/Dockerfile
     ports:
       - "5001:8080"
     depends_on:

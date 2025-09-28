@@ -33,20 +33,20 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
 # Corrigido: sem "src/" no caminho
-COPY ["FCG.API/FCG.API.csproj", "FCG.API/"]
-COPY ["FCG.Application/FCG.Application.csproj", "FCG.Application/"]
-COPY ["FCG.Domain/FCG.Domain.csproj", "FCG.Domain/"]
-COPY ["FCG.Infra.Data/FCG.Infra.Data.csproj", "FCG.Infra.Data/"]
+COPY ["FCG.User.API/FCG.User.API.csproj", "FCG.User.API/"]
+COPY ["FCG.User.Application/FCG.User.Application.csproj", "FCG.User.Application/"]
+COPY ["FCG.User.Domain/FCG.User.Domain.csproj", "FCG.Domain/"]
+COPY ["FCG.User.Infra.Data/FCG.User.Infra.Data.csproj", "FCG.User.Infra.Data/"]
 
-RUN dotnet restore "FCG.API/FCG.API.csproj"
+RUN dotnet restore "FCG.User.API/FCG.User.API.csproj"
 COPY . .
-WORKDIR "/src/FCG.API"
-RUN dotnet build "FCG.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/FCG.User.API"
+RUN dotnet build "FCG.User.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Publish
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./FCG.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./FCG.User.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # Run API
 FROM base AS final
@@ -55,4 +55,4 @@ COPY --from=publish /app/publish .
 
 RUN echo "📂 Conteúdo da pasta /app/newrelic:" && ls -R /app/newrelic || echo "❌ Pasta /app/newrelic não encontrada"
 
-ENTRYPOINT ["dotnet", "FCG.API.dll"]
+ENTRYPOINT ["dotnet", "FCG.User.API.dll"]
