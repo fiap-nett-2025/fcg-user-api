@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace FCG.Domain.ValueObjects;
+namespace FCG.User.Domain.ValueObjects;
 
 public class Password
 {

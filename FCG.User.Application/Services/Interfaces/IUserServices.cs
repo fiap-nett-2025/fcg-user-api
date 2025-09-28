@@ -1,7 +1,7 @@
-﻿using FCG.Application.DTO;
-using FCG.Application.Services;
+﻿using FCG.User.Application.DTO;
+using FCG.User.Application.Services;
 
-namespace FCG.Application.Services.Interfaces;
+namespace FCG.User.Application.Services.Interfaces;
 
 public interface IUserService
 {

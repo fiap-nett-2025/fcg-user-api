@@ -1,4 +1,4 @@
-﻿using FCG.Domain.Exceptions;
+﻿using FCG.User.Domain.Exceptions;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 using System.Net;
 
-namespace FCG.Application.Middleware;
+namespace FCG.User.Application.Middleware;
 
 public class ExceptionMiddleware
 {

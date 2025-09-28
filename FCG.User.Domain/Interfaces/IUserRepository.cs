@@ -1,13 +1,14 @@
-﻿using FCG.Domain.Entities;
+﻿
+using FCG.User.Domain.Entities;
 
-namespace FCG.Domain.Interfaces;
+namespace FCG.User.Domain.Interfaces;
 
 public interface IUserRepository
 {
-    Task<User> GetByIdAsync(string id);
-    Task<User> GetByEmailAsync(string email);
-    Task AddAsync(User user);
-    Task UpdateAsync(User user);
+    Task<Entities.User> GetByIdAsync(string id);
+    Task<Entities.User> GetByEmailAsync(string email);
+    Task AddAsync(Entities.User user);
+    Task UpdateAsync(Entities.User user);
     Task DeleteAsync(string id);
     Task<bool> ExistsByEmailAsync(string email);
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace FCG.API.Configurations
+namespace FCG.User.API.Configurations
 {
     public static class SwaggerConfiguration
     {

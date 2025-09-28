@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using FCG.Domain.Entities;
-using FCG.Domain.ValueObjects;
+using FCG.User.Domain.Entities;
+using FCG.User.Domain.ValueObjects;
 
-namespace FCG.Infra.Data.Mappings
+namespace FCG.User.Infra.Data.Mappings
 {
-    public class UserMapping : IEntityTypeConfiguration<User>
+    public class UserMapping : IEntityTypeConfiguration<Domain.Entities.User>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<Domain.Entities.User> builder)
         {
             builder.ToTable("AspNetUsers"); // 🔥 Mantém o padrão Identity
 

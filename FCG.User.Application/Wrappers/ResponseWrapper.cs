@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCG.Application.Wrappers
+namespace FCG.User.Application.Wrappers
 {
     public class ResponseWrapper<T>
     {

@@ -4,13 +4,13 @@ using Microsoft.Extensions.Configuration;
 
 using System.IO;
 
-namespace FCG.Infra.Data.Context
+namespace FCG.User.Infra.Data.Context
 {
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<FCGDbContext>
     {
         public FCGDbContext CreateDbContext(string[] args)
         {
-            var basePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../FCG.API"));
+            var basePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../FCG.User.API"));
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(basePath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)

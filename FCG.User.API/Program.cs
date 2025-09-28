@@ -1,12 +1,12 @@
-﻿using FCG.API.Configurations;
-using FCG.Application.Middleware;
-using FCG.Application.Services;
-using FCG.Application.Services.Interfaces;
-using FCG.Domain.Entities;
-using FCG.Domain.Interfaces;
-using FCG.Infra.Data.Context;
-using FCG.Infra.Data.Repository;
-using FCG.Infra.Data.Seedings;
+﻿using FCG.User.API.Configurations;
+using FCG.User.Application.Middleware;
+using FCG.User.Application.Services;
+using FCG.User.Application.Services.Interfaces;
+using FCG.User.Domain.Entities;
+using FCG.User.Domain.Interfaces;
+using FCG.User.Infra.Data.Context;
+using FCG.User.Infra.Data.Repository;
+using FCG.User.Infra.Data.Seedings;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;

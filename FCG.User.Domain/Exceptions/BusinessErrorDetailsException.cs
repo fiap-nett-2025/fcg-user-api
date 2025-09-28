@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace FCG.Domain.Exceptions
+namespace FCG.User.Domain.Exceptions
 {
     public class BusinessErrorDetailsException : BaseCustomException
     {

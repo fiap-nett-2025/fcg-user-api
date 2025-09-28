@@ -1,10 +1,10 @@
-﻿using FCG.Application.DTO;
-using FCG.Application.Services.Interfaces;
-using FCG.Domain.Entities;
+﻿using FCG.User.Application.DTO;
+using FCG.User.Application.Services.Interfaces;
+using FCG.User.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FCG.API.Controllers;
+namespace FCG.User.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -26,23 +26,23 @@ public class UserGameLibrary : ApiBaseController
         return Success(userGameLibrary, "Biblioteca de jogos do usuario retornada com sucesso");
     }
 
-    [HttpGet("{userId}/game/{gameId:int}")]
-    public async Task<IActionResult> GetOneGameFromUserLibrary(string userId, int gameId)
+    [HttpGet("{userId}/game/{gameId}")]
+    public async Task<IActionResult> GetOneGameFromUserLibrary(string userId, string gameId)
     {
         var item = await _userGameLibraryServices.GetOneGameFromUserLibraryAsync(userId, gameId);
 
         return Success(item, "Jogo presente na biblioteca do usuário:");
     }
 
-    [HttpPost("{userId}/game/{gameId:int}")]
-    public async Task<IActionResult> AddGameToUserLibrary(string userId, int gameId)
+    [HttpPost("{userId}/game/{gameId}")]
+    public async Task<IActionResult> AddGameToUserLibrary(string userId, string gameId)
     {
         var item = await _userGameLibraryServices.AddGameToUserLibraryAsync(userId, gameId);
         return CreatedResponse(item, "Jogo adcionado na biblioteca com sucesso.");
     }
 
-    [HttpDelete("{userId}/game/{gameId:int}")]
-    public async Task<IActionResult> RemoveGameFromUserLibrary(string userId, int gameId)
+    [HttpDelete("{userId}/game/{gameId}")]
+    public async Task<IActionResult> RemoveGameFromUserLibrary(string userId, string gameId)
     {
         await _userGameLibraryServices.DeleteGameInUserLibraryAsync(userId, gameId);
         return NoContent();

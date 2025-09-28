@@ -1,20 +1,14 @@
-﻿using FCG.Domain.Entities;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FCG.User.Domain.Entities;
 
-namespace FCG.Domain.Interfaces
+namespace FCG.User.Domain.Interfaces
 {
     public interface IUserGameLibraryRepository
     {
         Task<IReadOnlyList<UserGameLibrary>> GetGamesLibraryByUserIdAsync(string userId);
-        Task<UserGameLibrary?> GetOneGameFromUserLibraryAsync(string userId, int gameId);
+        Task<UserGameLibrary?> GetOneGameFromUserLibraryAsync(string userId, string gameId);
         Task AddGameToUserLibraryAsync(UserGameLibrary userGameLibrary);
         Task UpdateGameInUserLibraryAsync(UserGameLibrary userGameLibrary);
-        Task RemoveGameFromUserLibraryAsync(string userId, int gameId);
+        Task RemoveGameFromUserLibraryAsync(string userId, string gameId);
         Task RemoveAllRecordsAsync(string userId);
     }
 }

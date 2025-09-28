@@ -1,8 +1,8 @@
-﻿using FCG.Domain.Enums;
-using FCG.Domain.ValueObjects;
+﻿using FCG.User.Domain.Enums;
+using FCG.User.Domain.ValueObjects;
 using Microsoft.AspNetCore.Identity;
 
-namespace FCG.Domain.Entities;
+namespace FCG.User.Domain.Entities;
 
 public class User : IdentityUser
 {

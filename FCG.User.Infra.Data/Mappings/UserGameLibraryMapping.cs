@@ -1,13 +1,9 @@
-﻿using FCG.Domain.Entities;
+﻿using FCG.User.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FCG.Infra.Data.Mappings
+
+namespace FCG.User.Infra.Data.Mappings
 {
     public class UserGameLibraryMapping : IEntityTypeConfiguration<UserGameLibrary>
     {

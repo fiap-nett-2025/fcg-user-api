@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCG.Application.DTO
+namespace FCG.User.Application.DTO
 {
     public class UserRoleModel
     {

@@ -2,7 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace FCG.API.Configurations
+namespace FCG.User.API.Configurations
 {
     public class SwaggerResponseGenericExampleFilter : IOperationFilter
     {

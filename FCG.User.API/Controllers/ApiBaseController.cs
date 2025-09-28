@@ -1,8 +1,8 @@
-﻿using FCG.Application.Wrappers;
+﻿using FCG.User.Application.Wrappers;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace FCG.API.Controllers
+namespace FCG.User.API.Controllers
 {
     [ApiController]
     public abstract class ApiBaseController : ControllerBase

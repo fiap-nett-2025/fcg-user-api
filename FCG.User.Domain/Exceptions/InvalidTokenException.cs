@@ -1,4 +1,4 @@
-﻿namespace FCG.Domain.Exceptions
+﻿namespace FCG.User.Domain.Exceptions
 {
     public class InvalidTokenException : BusinessErrorDetailsException
     {

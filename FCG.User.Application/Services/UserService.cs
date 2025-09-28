@@ -1,22 +1,22 @@
-﻿using FCG.Application.DTO;
-using FCG.Application.Services.Interfaces;
-using FCG.Domain.Entities;
-using FCG.Domain.Exceptions;
-using FCG.Domain.Interfaces;
-using FCG.Domain.ValueObjects;
+﻿using FCG.User.Application.DTO;
+using FCG.User.Application.Services.Interfaces;
+using FCG.User.Domain.Entities;
+using FCG.User.Domain.Exceptions;
+using FCG.User.Domain.Interfaces;
+using FCG.User.Domain.ValueObjects;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace FCG.Application.Services;
+namespace FCG.User.Application.Services;
 
 public class UserService : IUserService
 {
-    private readonly UserManager<User> _userManager;
+    private readonly UserManager<User.Domain.Entities.User> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly IUserRepository _userRepository;
 
     public UserService(
-        UserManager<User> userManager,
+        UserManager<User.Domain.Entities.User> userManager,
         RoleManager<IdentityRole> roleManager,
         IUserRepository userRepository)
     {
@@ -60,7 +60,7 @@ public class UserService : IUserService
         if (exists is not null)
             throw new BusinessErrorDetailsException("Já existe um usuário com este email.");
 
-        var user = new User(model.Name, model.Email);
+        var user = new User.Domain.Entities.User(model.Name, model.Email);
         var password = new Password(model.Password);
 
         var result = await _userManager.CreateAsync(user, password.PlainText);

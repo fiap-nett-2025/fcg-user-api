@@ -1,8 +1,8 @@
-﻿using FCG.Domain.Entities;
+﻿using FCG.User.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FCG.Infra.Data.Seedings
+namespace FCG.User.Infra.Data.Seedings
 {
     public static class RoleAndAdminSeeding
     {
@@ -13,7 +13,7 @@ namespace FCG.Infra.Data.Seedings
                 Console.WriteLine("Starting role and admin user seed...");
 
                 var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-                var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
+                var userManager = serviceProvider.GetRequiredService<UserManager<Domain.Entities.User>>();
 
                 var roles = new[] { "User", "Admin" };
 
@@ -39,7 +39,7 @@ namespace FCG.Infra.Data.Seedings
                 var adminUser = await userManager.FindByEmailAsync(adminEmail);
                 if (adminUser == null)
                 {
-                    adminUser = new User("Admin System", adminEmail)
+                    adminUser = new Domain.Entities.User("Admin System", adminEmail)
                     {
                         EmailConfirmed = true
                     };

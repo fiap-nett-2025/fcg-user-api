@@ -1,13 +1,13 @@
-﻿namespace FCG.Domain.Entities;
+﻿namespace FCG.User.Domain.Entities;
 
 public class UserGameLibrary
 {
 	//public int Id { get; set; }
 	public string UserId { get; set; }
-	public int GameId { get; set; }
+	public string GameId { get; set; }
     public DateTime AddedAt { get; private set; } = DateTime.UtcNow;
     public User User { get; set; } = default!;
-    public UserGameLibrary(string userId, int gameId)
+    public UserGameLibrary(string userId, string gameId)
 	{
         ValidateUserId(userId);
         ValidateGameId(gameId);
@@ -24,10 +24,10 @@ public class UserGameLibrary
             throw new ArgumentException("UserId não pode ser nulo, vazio ou espaços.", nameof(userId));
     }
 
-    public static void ValidateGameId(int gameId)
+    public static void ValidateGameId(string gameId)
     {
-        if (gameId <= 0)
-            throw new ArgumentException("GameId deve ser maior que zero.");
+        if (string.IsNullOrWhiteSpace(gameId))
+            throw new ArgumentException("GameId não deve ser vazio.");
     }
 
     public void UpdateUserId(string userId)
@@ -36,7 +36,7 @@ public class UserGameLibrary
         UserId = userId;
     }
 
-    public void UpdateGameId(int gameId)
+    public void UpdateGameId(string gameId)
     {
         ValidateGameId(gameId);
         GameId = gameId;

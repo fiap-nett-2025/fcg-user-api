@@ -1,25 +1,25 @@
-﻿using FCG.Application.DTO;
-using FCG.Application.Services;
-using FCG.Domain.Entities;
-using FCG.Domain.ValueObjects;
+﻿using FCG.User.Application.DTO;
+using FCG.User.Application.Services;
+using FCG.User.Domain.Entities;
+using FCG.User.Domain.ValueObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FCG.API.Controllers
+namespace FCG.User.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ApiBaseController
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<Domain.Entities.User> _userManager;
+        private readonly SignInManager<Domain.Entities.User> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly JwtService _jwtService;
 
         public AuthController(
-            UserManager<User> userManager,
-            SignInManager<User> signInManager,
+            UserManager<Domain.Entities.User> userManager,
+            SignInManager<Domain.Entities.User> signInManager,
             RoleManager<IdentityRole> roleManager,
             JwtService jwtService)
         {
@@ -33,7 +33,7 @@ namespace FCG.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterDto dto)
         {
-            var user = new User(dto.Name, dto.Email);
+            var user = new Domain.Entities.User(dto.Name, dto.Email);
             var password = new Password(dto.Password);
 
             var result = await _userManager.CreateAsync(user, password.PlainText);

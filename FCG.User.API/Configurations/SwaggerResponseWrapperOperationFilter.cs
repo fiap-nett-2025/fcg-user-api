@@ -1,8 +1,8 @@
-﻿using FCG.Application.Wrappers;
+﻿using FCG.User.Application.Wrappers;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace FCG.API.Configurations
+namespace FCG.User.API.Configurations
 {
     public class SwaggerResponseWrapperOperationFilter : IOperationFilter
     {

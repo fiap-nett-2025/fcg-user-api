@@ -1,7 +1,7 @@
-﻿using FCG.API.Controllers;
-using FCG.Application.DTO;
-using FCG.Application.Services;
-using FCG.Application.Services.Interfaces;
+﻿using FCG.User.API.Controllers;
+using FCG.User.Application.DTO;
+using FCG.User.Application.Services;
+using FCG.User.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

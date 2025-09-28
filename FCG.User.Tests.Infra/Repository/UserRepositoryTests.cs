@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using FCG.Domain.ValueObjects;
-using FCG.Domain.Entities;
-using FCG.Infra.Data.Context;
-using FCG.Infra.Data.Repository;
+using FCG.User.Domain.ValueObjects;
+using FCG.User.Domain.Entities;
+using FCG.User.Infra.Data.Repository;
+using FCG.User.Infra.Data.Context;
 
-namespace FCG.Infra.Tests.Repositories;
+namespace FCG.User.Tests.Infra.Repository;
 
 public class UserRepositoryTests
 {
@@ -25,7 +25,7 @@ public class UserRepositoryTests
     public async Task AddAsync_ValidUser_ShouldAddUserToDatabase()
     {
         //  Arrange
-        var user = new User("José Silva", "rm000000@fiap.com.br");
+        var user = new User.Domain.Entities.User("José Silva", "rm000000@fiap.com.br");
 
         // Act
         await _repository.AddAsync(user);
@@ -40,7 +40,7 @@ public class UserRepositoryTests
     public async Task DeleteAsync_ExistUser_ShouldDeleteUserFromDatabase()
     {
         // Arrange
-        var user = new User("José Silva", "rm000000@fiap.com.br");
+        var user = new User.Domain.Entities.User("José Silva", "rm000000@fiap.com.br");
 
         // Act
         await _repository.AddAsync(user);
@@ -54,7 +54,7 @@ public class UserRepositoryTests
     public async Task UpdateAsync_ExistUser_ShouldUpdateUser()
     {
         // Arrange
-        var user = new User("José Silva", "rm000000@fiap.com.br");
+        var user = new User.Domain.Entities.User("José Silva", "rm000000@fiap.com.br");
 
         // Act
         await _repository.AddAsync(user);

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCG.Application.DTO
+namespace FCG.User.Application.DTO
 {
     public class UpsertGameToUserLibrary
     {
         public required string UserId { get; set; }
-        public required int GameId { get; set; }
+        public required string GameId { get; set; }
 
     }
 }

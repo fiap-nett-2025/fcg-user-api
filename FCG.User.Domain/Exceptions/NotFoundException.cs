@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCG.Domain.Exceptions
+namespace FCG.User.Domain.Exceptions
 {
     public class NotFoundException : BaseCustomException
     {

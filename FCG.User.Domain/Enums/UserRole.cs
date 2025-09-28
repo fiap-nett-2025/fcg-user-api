@@ -1,4 +1,4 @@
-﻿namespace FCG.Domain.Enums;
+﻿namespace FCG.User.Domain.Enums;
 
 public enum UserRole
 {

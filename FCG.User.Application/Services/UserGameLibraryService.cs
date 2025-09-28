@@ -1,15 +1,15 @@
-﻿using FCG.Application.DTO;
-using FCG.Application.Services.Interfaces;
-using FCG.Domain.Entities;
-using FCG.Domain.Exceptions;
-using FCG.Domain.Interfaces;
+﻿using FCG.User.Application.DTO;
+using FCG.User.Application.Services.Interfaces;
+using FCG.User.Domain.Entities;
+using FCG.User.Domain.Exceptions;
+using FCG.User.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCG.Application.Services
+namespace FCG.User.Application.Services
 {
     public class UserGameLibraryService : IUserGameLibraryServices
     {
@@ -25,7 +25,7 @@ namespace FCG.Application.Services
             _userRepository = userRepository;
         }
 
-        public async Task<UserGameLibraryDto> AddGameToUserLibraryAsync(string userId, int gameId)
+        public async Task<UserGameLibraryDto> AddGameToUserLibraryAsync(string userId, string gameId)
         {
             //checar se usuario existe
             /*var userExist = _userRepository.GetByIdAsync(model.UserId);
@@ -48,7 +48,7 @@ namespace FCG.Application.Services
             };
         }
 
-        public async Task DeleteGameInUserLibraryAsync(string userId, int GameId)
+        public async Task DeleteGameInUserLibraryAsync(string userId, string GameId)
         {
             //checar se usuario existe
             /*var userExist = _userRepository.GetByIdAsync(userId);
@@ -68,7 +68,7 @@ namespace FCG.Application.Services
             return list.Select(ToDto);
         }
 
-        public async Task<UserGameLibraryDto> GetOneGameFromUserLibraryAsync(string userId, int gameId)
+        public async Task<UserGameLibraryDto> GetOneGameFromUserLibraryAsync(string userId, string gameId)
         {
             var entity = await _userGameLibraryRepository.GetOneGameFromUserLibraryAsync(userId, gameId);
 

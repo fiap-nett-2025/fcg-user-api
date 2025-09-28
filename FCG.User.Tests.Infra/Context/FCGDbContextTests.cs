@@ -1,8 +1,8 @@
-﻿using FCG.Domain.Entities;
-using FCG.Infra.Data.Context;
+﻿using FCG.User.Domain.Entities;
+using FCG.User.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace FCG.Infra.Tests.Context;
+namespace FCG.User.Tests.Infra.Context;
 public class FCGDbContextTests
 {
     [Fact]
@@ -14,7 +14,7 @@ public class FCGDbContextTests
 
         using (var context = new FCGDbContext(options))
         {
-            var user = new User("Test", "valid@fiap.com.br");
+            var user = new User.Domain.Entities.User("Test", "valid@fiap.com.br");
             context.Users.Add(user);
             context.SaveChanges();
         }

@@ -1,12 +1,11 @@
-﻿using FCG.Domain.Entities;
-using FCG.Infra.Data.Mappings;
-
+﻿using FCG.User.Domain.Entities;
+using FCG.User.Infra.Data.Mappings;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace FCG.Infra.Data.Context
+namespace FCG.User.Infra.Data.Context
 {
-    public class FCGDbContext : IdentityDbContext<User>
+    public class FCGDbContext : IdentityDbContext<Domain.Entities.User>
     {
 
         public FCGDbContext(DbContextOptions<FCGDbContext> options) : base(options)

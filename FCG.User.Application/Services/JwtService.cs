@@ -3,9 +3,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using FCG.Domain.Entities;
+using FCG.User.Domain.Entities;
 
-namespace FCG.Application.Services;
+namespace FCG.User.Application.Services;
 
 public class JwtService
 {
@@ -16,7 +16,7 @@ public class JwtService
         _configuration = configuration;
     }
 
-    public string GenerateToken(User user, IList<string> roles)
+    public string GenerateToken(Domain.Entities.User user, IList<string> roles)
     {
         var jwtSettings = _configuration.GetSection("JwtSettings");
         var key = jwtSettings["Key"];

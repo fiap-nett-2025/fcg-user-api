@@ -1,4 +1,4 @@
-﻿namespace FCG.Domain.Exceptions
+﻿namespace FCG.User.Domain.Exceptions
 {
     public abstract class BaseCustomException : Exception
     {

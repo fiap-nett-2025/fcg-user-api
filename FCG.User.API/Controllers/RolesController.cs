@@ -1,12 +1,12 @@
-﻿using FCG.Application.DTO;
-using FCG.Domain.Entities;
+﻿using FCG.User.Application.DTO;
+using FCG.User.Domain.Entities;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace FCG.API.Controllers;
+namespace FCG.User.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -14,11 +14,11 @@ namespace FCG.API.Controllers;
 public class RolesController : ApiBaseController
 {
     private readonly RoleManager<IdentityRole> _roleManager;
-    private readonly UserManager<User> _userManager;
+    private readonly UserManager<Domain.Entities.User> _userManager;
 
     public RolesController(
         RoleManager<IdentityRole> roleManager,
-        UserManager<User> userManager)
+        UserManager<Domain.Entities.User> userManager)
     {
         _roleManager = roleManager;
         _userManager = userManager;
