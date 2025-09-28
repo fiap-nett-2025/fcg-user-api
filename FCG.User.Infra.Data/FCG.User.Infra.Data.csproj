@@ -29,9 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FCG.Domain\FCG.User.Domain.csproj">
-      <TreatAsUsed>true</TreatAsUsed>
-    </ProjectReference>
+    <ProjectReference Include="..\FCG.User.Domain\FCG.User.Domain.csproj" />
   </ItemGroup>
 
 </Project>
