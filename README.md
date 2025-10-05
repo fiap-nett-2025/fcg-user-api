@@ -1,8 +1,8 @@
-﻿﻿# 🎮 FIAP Cloud Games (FCG) - Game Service
+﻿﻿# 🎮 FIAP Cloud Games (FCG) - User Service
 
 ## 📚 Sobre o Projeto
 
-Fiap Cloud Users (FCU) é uma API de microsserviço desenvolvida dentro do ecossistema educacional da FIAP 
+É uma API de microsserviço desenvolvida dentro do ecossistema educacional da FIAP 
 (Faclidade de Informática e Administração Paliista).
 O objetivo é fornecer uma base sólida para gestão de usuários e autenticação/autorização via JWT, 
 aplicada em cenários de estudo e práticas de cloud computing, microsserviços e DevOps.
