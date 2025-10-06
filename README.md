@@ -1,4 +1,4 @@
-﻿﻿# 🎮 FIAP Cloud Games (FCG) - User Service
+# 🎮 FIAP Cloud Games (FCG) - User Service
 
 ## 📚 Sobre o Projeto
 
@@ -9,7 +9,7 @@ aplicada em cenários de estudo e práticas de cloud computing, microsserviços 
 
 [Documentação](https://www.notion.so/Fiap-Cloud-Games-FCG-1dea50ade75480e78653c05e2cca2193?pvs=4)
 
-## 🎮 Sobre o Serviço de Usuários
+## :bust_in_silhouette: Sobre o Serviço de Usuários
 
 O serviço de usuário é responsável por gerenciar os dados de usuários, niveis de acesso e biblioteca de jogos. Ele oferece funcionalidades para criar, ler, atualizar e deletar dados desses itens.
 
