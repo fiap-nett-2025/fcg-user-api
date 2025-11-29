@@ -7,14 +7,54 @@ services:
       MSSQL_PID: "Developer"
     ports:
       - "1434:1433"
+    networks:
+      - my_custom_network
+  rabbitmq_user:
+    image: rabbitmq:4.2.1-management
+    container_name: rabbitmq_user
+    ports:
+      - "5672:5672"     # Porta do protocolo AMQP
+      - "15672:15672"   # Painel de administracao
+    networks:
+        - my_custom_network
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin123
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
   fcg-user-api:
     build:
       context: .
       dockerfile: ./FCG.User.API/Dockerfile
+    restart: always
+    networks:
+        - my_custom_network
     ports:
-      - "5001:8080"
+      - "5002:8080"
     depends_on:
       - sqlserver
+      - rabbitmq_user
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__DefaultConnection: "Server=sqlserver;Initial Catalog=FCG;User Id=sa;Password=FCG@admin;TrustServerCertificate=true"
+      RabbitMq__Settings__HostName: rabbitmq_user
+  worker:
+      container_name: fcg-user-worker
+      build:
+        context: .
+        dockerfile: ./FCG.User.Worker/Dockerfile
+      restart: always
+      networks:
+        - my_custom_network
+      environment:
+        RabbitMq__Settings__HostName: rabbitmq_user
+      depends_on:
+        - rabbitmq_user
+networks:
+  my_custom_network:
+    external: false
+
+volumes:
+  rabbitmq_data:

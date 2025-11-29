@@ -34,12 +34,12 @@ public class UserGameLibrary : ApiBaseController
         return Success(item, "Jogo presente na biblioteca do usuário:");
     }
 
-    [HttpPost("{userId}/game/{gameId}")]
+    /*[HttpPost("{userId}/game/{gameId}")]
     public async Task<IActionResult> AddGameToUserLibrary(string userId, string gameId)
     {
         var item = await _userGameLibraryServices.AddGameToUserLibraryAsync(userId, gameId);
         return CreatedResponse(item, "Jogo adcionado na biblioteca com sucesso.");
-    }
+    }*/
 
     [HttpDelete("{userId}/game/{gameId}")]
     public async Task<IActionResult> RemoveGameFromUserLibrary(string userId, string gameId)
