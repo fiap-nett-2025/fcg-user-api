@@ -15,5 +15,6 @@
   <ItemGroup>
 	<ProjectReference Include="..\FCG.User.Application\FCG.User.Application.csproj" />
 	<ProjectReference Include="..\FCG.User.Domain\FCG.User.Domain.csproj" />
+	<ProjectReference Include="..\FCG.User.Infra.Data\FCG.User.Infra.Data.csproj" />
   </ItemGroup>
 </Project>

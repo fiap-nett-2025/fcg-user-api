@@ -50,6 +50,7 @@ services:
         - my_custom_network
       environment:
         RabbitMq__Settings__HostName: rabbitmq_user
+        ConnectionStrings__DefaultConnection: "Server=sqlserver;Initial Catalog=FCG;User Id=sa;Password=FCG@admin;TrustServerCertificate=true"
       depends_on:
         - rabbitmq_user
 networks:

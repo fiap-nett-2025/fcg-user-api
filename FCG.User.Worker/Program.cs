@@ -3,11 +3,17 @@ using FCG.User.Infra.Data.Messaging.Config;
 using FCG.User.Infra.Data;
 using FCG.User.Application;
 using System.Net;
+using FCG.User.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();
+
+builder.Services.AddDbContext<FCGDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 #region RabbitMq
 var rabbitSection = builder.Configuration.GetSection("RabbitMq");
