@@ -15,7 +15,7 @@ builder.Services.AddDbContext<FCGDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
-#region RabbitMq
+#region RabbitMq (Not Used)
 var rabbitSection = builder.Configuration.GetSection("RabbitMq");
 
 var rabbitSettingsSection = rabbitSection.GetSection("Settings");
@@ -29,6 +29,17 @@ if (!queuesSection.Exists())
 builder.Services.Configure<QueuesOptions>(queuesSection);
 
 builder.Services.ConfigureRabbitMq();
+#endregion
+
+#region Amazon SQS
+var messagingSection = builder.Configuration.GetSection("Messaging");
+if (!messagingSection.Exists())
+    throw new InvalidOperationException("Section 'Messaging' not found in configuration.");
+
+var queuesSection = messagingSection.GetSection("Queues");
+builder.Services.Configure<QueuesOptions>(queuesSection);
+
+builder.Services.ConfigureAmazonSQS(builder.Configuration);
 #endregion
 
 builder.Services.ConfigureServices();

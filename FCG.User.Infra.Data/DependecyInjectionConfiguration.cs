@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using FCG.User.Infra.Data.Messaging.Config;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using FCG.User.Infra.Data.Messaging;
@@ -10,6 +9,7 @@ namespace FCG.User.Infra.Data
 {
     public static class DependecyInjectionConfiguration
     {
+        //RabbitMq
         public static IServiceCollection ConfigureRabbitMq(this IServiceCollection services)
         {
             services.AddSingleton(sp =>
@@ -41,6 +41,14 @@ namespace FCG.User.Infra.Data
             });
 
             services.AddTransient<IQueueConsumer, RabbitMqConsumer>();
+            return services;
+        }
+
+        //Amazon SQS
+        public static IServiceCollection ConfigureAmazonSQS(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDefaultAWSOptions(configuration.GetAWSOptions());
+            services.AddAWSService<IAmazonSQS>();
             return services;
         }
     }

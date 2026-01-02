@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fcg-users-api
+  labels:
+    app: fcg-users-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fcg-users-api
+  template:
+    metadata:
+      labels:
+        app: fcg-users-api
+    spec:
+      serviceAccountName: fcg-users-sa
+      volumes:
+        - name: secrets-store
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: fcg-api-aws-secrets
+      containers:
+        - name: fcg-users-api
+          image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/fcg-users-api:${IMAGE_TAG}
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: secrets-store
+              mountPath: /mnt/secrets
+              readOnly: true
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+          envFrom:
+            - secretRef:
+                name: fcg-users-secrets
+            - configMapRef:
+                name: fcg-users-config
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
