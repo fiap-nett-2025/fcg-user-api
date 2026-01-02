@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using FCG.User.Infra.Data.Messaging;
 using FCG.User.Domain.Interfaces.Messaging;
+using Microsoft.Extensions.Configuration;
 
 namespace FCG.User.Infra.Data
 {
