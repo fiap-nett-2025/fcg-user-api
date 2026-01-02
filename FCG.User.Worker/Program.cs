@@ -23,10 +23,10 @@ if (!rabbitSettingsSection.Exists())
     throw new InvalidOperationException("Section 'RabbitMqSettings' not found in configuration.");
 builder.Services.Configure<RabbitMqOptions>(rabbitSettingsSection);
 
-var queuesSection = rabbitSection.GetSection("Queues");
-if (!queuesSection.Exists())
+var queuesSectionRabbit = rabbitSection.GetSection("Queues");
+if (!queuesSectionRabbit.Exists())
     throw new InvalidOperationException("Section 'Queues' not found in configuration.");
-builder.Services.Configure<QueuesOptions>(queuesSection);
+builder.Services.Configure<QueuesOptions>(queuesSectionRabbit);
 
 builder.Services.ConfigureRabbitMq();
 #endregion
