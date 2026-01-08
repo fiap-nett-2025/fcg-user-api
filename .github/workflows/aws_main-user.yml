@@ -6,7 +6,7 @@ on:
 
 env:
     FCG_API_NAME: fcg-users-api
-    FCG_API_DOCKERFILE: ./FCG.Users.API/Dockerfile
+    FCG_API_DOCKERFILE: ./FCG.User.API/Dockerfile
 jobs:
   test:
     name: Running Tests
@@ -28,7 +28,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Domain Tests
-        run: dotnet test ./FCG.Users.Tests.Domain/FCG.Users.Tests.Domain.csproj --configuration Release --no-build --verbosity normal
+        run: dotnet test ./FCG.User.Tests.Domain/FCG.User.Tests.Domain.csproj --configuration Release --no-build --verbosity normal
   deploy:
     name: Deploy to Production
     needs: test
