@@ -1,10 +1,14 @@
-﻿using FCG.User.API.Configurations;
+﻿using FCG.User.API;
+using FCG.User.API.Configurations;
+using FCG.User.Application;
 using FCG.User.Application.Middleware;
 using FCG.User.Application.Services;
 using FCG.User.Application.Services.Interfaces;
 using FCG.User.Domain.Entities;
 using FCG.User.Domain.Interfaces;
+using FCG.User.Infra.Data;
 using FCG.User.Infra.Data.Context;
+using FCG.User.Infra.Data.Messaging.Config;
 using FCG.User.Infra.Data.Repository;
 using FCG.User.Infra.Data.Seedings;
 
@@ -68,6 +72,33 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+#region RabbitMq (Not Used)
+/*var rabbitSection = builder.Configuration.GetSection("RabbitMq");
+
+var rabbitSettingsSection = rabbitSection.GetSection("Settings");
+if (!rabbitSettingsSection.Exists())
+    throw new InvalidOperationException("Section 'RabbitMqSettings' not found in configuration.");
+builder.Services.Configure<RabbitMqOptions>(rabbitSettingsSection);
+
+var queuesSectionRabbit = rabbitSection.GetSection("Queues");
+if (!queuesSectionRabbit.Exists())
+    throw new InvalidOperationException("Section 'Queues' not found in configuration.");
+builder.Services.Configure<QueuesOptions>(queuesSectionRabbit);
+
+builder.Services.ConfigureRabbitMq();*/
+#endregion
+
+#region Amazon SQS
+var messagingSection = builder.Configuration.GetSection("Messaging");
+if (!messagingSection.Exists())
+    throw new InvalidOperationException("Section 'Messaging' not found in configuration.");
+
+var queuesSection = messagingSection.GetSection("Queues");
+builder.Services.Configure<QueuesOptions>(queuesSection);
+
+builder.Services.ConfigureAmazonSQS(builder.Configuration);
+#endregion
+
 // ✅ Serviços
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -75,6 +106,10 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserGameLibraryRepository, UserGameLibraryRepository>();
 builder.Services.AddScoped<IUserGameLibraryServices, UserGameLibraryService>();
 builder.Services.AddSwaggerConfiguration();
+builder.Services.ConfigureServices();
+
+// ✅ Worker
+builder.Services.AddHostedService<Worker>();
 
 // ✅ Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -83,6 +118,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 
 builder.Logging.AddJsonConsole();
+
+
 
 var app = builder.Build();
 

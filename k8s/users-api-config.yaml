@@ -6,3 +6,6 @@ data:
   API__GamesApiBaseUrl: "https://fcg-game-api.whitesea-88353420.westus2.azurecontainerapps.io"
   API__UsersApiBaseUrl: "https://fcg-user-api.whitesea-88353420.westus2.azurecontainerapps.io"
   API__PaymentGatewayBaseUrl: "https://payment-gateway-hjgsdacahzdmazdc.canadacentral-01.azurewebsites.net"
+  #somente para testes
+  JwtSettings__Key: "maisValeUmaPedraNoCaminhoQueDuasNoRim"
+  ConnectionStrings__DefaultConnection: "Data Source=fcg-user-database.cs5mufozdnsi.us-east-1.rds.amazonaws.com;Port=1433;Initial Catalog=FCG;Integrated Security=True;Encrypt=False;Trust Server Certificate=True;User Id=admin;Password=fcg12345;"

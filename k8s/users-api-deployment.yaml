@@ -14,29 +14,21 @@ spec:
       labels:
         app: fcg-users-api
     spec:
-      serviceAccountName: fcg-users-sa
-      volumes:
-        - name: secrets-store
-          csi:
-            driver: secrets-store.csi.k8s.io
-            readOnly: true
-            volumeAttributes:
-              secretProviderClass: fcg-api-aws-secrets
       containers:
         - name: fcg-users-api
-          image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/fcg-users-api:${IMAGE_TAG}
+          image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/fcg-users-api:latest
           ports:
-            - containerPort: 80
-          volumeMounts:
-            - name: secrets-store
-              mountPath: /mnt/secrets
-              readOnly: true
+            - containerPort: 8080
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: "Production"
+            - name: AWS_REGION
+              value: "${AWS_REGION}"
+            - name: AWS_DEFAULT_REGION
+              value: "${AWS_REGION}"
           envFrom:
             - secretRef:
-                name: fcg-users-secrets
+                name: aws-credentials
             - configMapRef:
                 name: fcg-users-config
           resources:

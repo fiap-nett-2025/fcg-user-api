@@ -4,7 +4,7 @@ using FCG.User.Domain.Interfaces.Messaging;
 using FCG.User.Infra.Data.Messaging.Config;
 using Microsoft.Extensions.Options;
 
-namespace FCG.User.Worker;
+namespace FCG.User.API;
 
 public class Worker(
     ILogger<Worker> logger, 
@@ -12,7 +12,7 @@ public class Worker(
     IQueueConsumer consumer, 
     IMessageHandler<AddGameInLibraryDTO> messageHandler) 
     : BackgroundService
-{
+{ 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         try

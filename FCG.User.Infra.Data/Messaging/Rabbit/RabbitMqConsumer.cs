@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace FCG.User.Infra.Data.Messaging
+namespace FCG.User.Infra.Data.Messaging.Rabbit
 {
     public class RabbitMqConsumer(ConnectionFactory factory, ILogger<RabbitMqConsumer> logger) : IQueueConsumer
     {

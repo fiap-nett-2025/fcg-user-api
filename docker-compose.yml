@@ -40,19 +40,6 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__DefaultConnection: "Server=sqlserver;Initial Catalog=FCG;User Id=sa;Password=FCG@admin;TrustServerCertificate=true"
       RabbitMq__Settings__HostName: rabbitmq_user
-  worker:
-      container_name: fcg-user-worker
-      build:
-        context: .
-        dockerfile: ./FCG.User.Worker/Dockerfile
-      restart: always
-      networks:
-        - my_custom_network
-      environment:
-        RabbitMq__Settings__HostName: rabbitmq_user
-        ConnectionStrings__DefaultConnection: "Server=sqlserver;Initial Catalog=FCG;User Id=sa;Password=FCG@admin;TrustServerCertificate=true"
-      depends_on:
-        - rabbitmq_user
 networks:
   my_custom_network:
     external: false

@@ -2,10 +2,11 @@
 using FCG.User.Infra.Data.Messaging.Config;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
-using FCG.User.Infra.Data.Messaging;
 using FCG.User.Domain.Interfaces.Messaging;
 using Microsoft.Extensions.Configuration;
 using Amazon.SQS;
+using FCG.User.Infra.Data.Messaging.Rabbit;
+using FCG.User.Infra.Data.Messaging.Sqs;
 
 namespace FCG.User.Infra.Data
 {
@@ -51,6 +52,9 @@ namespace FCG.User.Infra.Data
         {
             services.AddDefaultAWSOptions(configuration.GetAWSOptions());
             services.AddAWSService<IAmazonSQS>();
+
+            services.AddTransient<IQueueConsumer, AmazonSqsConsumer>();
+
             return services;
         }
     }
