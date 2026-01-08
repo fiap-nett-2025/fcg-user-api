@@ -8,22 +8,40 @@ namespace FCG.User.Tests.Infra.Repository;
 
 public class UserRepositoryTests
 {
-    private readonly FCGDbContext _context;
+    private readonly IDbContextFactory<FCGDbContext> _contextFactory;
     private readonly UserRepository _repository;
 
     public UserRepositoryTests()
     {
         var options = new DbContextOptionsBuilder<FCGDbContext>()
-            .UseInMemoryDatabase(databaseName: "TestDatabase")
+            .UseInMemoryDatabase(databaseName: $"TestDatabase_{Guid.NewGuid()}")
             .Options;
 
-        _context = new FCGDbContext(options);
-        _repository = new UserRepository(_context);
+        // mock/fake do IDbContextFactory
+        _contextFactory = new TestDbContextFactory(options);
+        _repository = new UserRepository(_contextFactory);
+    }
+
+    public class TestDbContextFactory : IDbContextFactory<FCGDbContext>
+    {
+        private readonly DbContextOptions<FCGDbContext> _options;
+
+        public TestDbContextFactory(DbContextOptions<FCGDbContext> options)
+        {
+            _options = options;
+        }
+
+        public FCGDbContext CreateDbContext()
+        {
+            return new FCGDbContext(_options);
+        }
     }
 
     [Fact]
     public async Task AddAsync_ValidUser_ShouldAddUserToDatabase()
     {
+        using var dbContext = _contextFactory.CreateDbContext();
+
         //  Arrange
         var user = new User.Domain.Entities.User("José Silva", "rm000000@fiap.com.br");
 
@@ -31,7 +49,7 @@ public class UserRepositoryTests
         await _repository.AddAsync(user);
 
         // Assert
-        var saveUser = await _context.Users.FirstOrDefaultAsync();
+        var saveUser = await dbContext.Users.FirstOrDefaultAsync();
         Assert.NotNull(saveUser);
         Assert.Equal("rm000000@fiap.com.br", saveUser.Email!);
     }
@@ -39,6 +57,8 @@ public class UserRepositoryTests
     [Fact]
     public async Task DeleteAsync_ExistUser_ShouldDeleteUserFromDatabase()
     {
+        using var dbContext = _contextFactory.CreateDbContext();
+
         // Arrange
         var user = new User.Domain.Entities.User("José Silva", "rm000000@fiap.com.br");
 
@@ -47,7 +67,7 @@ public class UserRepositoryTests
         await _repository.DeleteAsync(user.Id!);
 
         // Assert
-        Assert.Null(await _context.Users.FindAsync(user.Id));
+        Assert.Null(await dbContext.Users.FindAsync(user.Id));
     }
 
     [Fact]
