@@ -11,7 +11,7 @@ namespace FCG.User.Application
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
             // Handlers
-            services.AddScoped<IMessageHandler<AddGameInLibraryDTO>, AddGameInLibraryMessageHandler>();
+            services.AddTransient<IMessageHandler<AddGameInLibraryDTO>, AddGameInLibraryMessageHandler>();
             return services;
         }
     }

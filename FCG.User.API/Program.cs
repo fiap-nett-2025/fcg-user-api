@@ -22,7 +22,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // ✅ Connection String
-builder.Services.AddDbContext<FCGDbContext>(options =>
+builder.Services.AddDbContextFactory<FCGDbContext>(options =>
 {
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection"),
@@ -31,7 +31,7 @@ builder.Services.AddDbContext<FCGDbContext>(options =>
             maxRetryDelay: TimeSpan.FromSeconds(10),
             errorNumbersToAdd: null)
     );
-}, ServiceLifetime.Scoped);
+});
 
 // ✅ Identity
 builder.Services.AddIdentity<User, IdentityRole>(options =>
@@ -72,7 +72,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-#region RabbitMq (Not Used)
+#region RabbitMq ( Not Used)
 /*var rabbitSection = builder.Configuration.GetSection("RabbitMq");
 
 var rabbitSettingsSection = rabbitSection.GetSection("Settings");
@@ -100,11 +100,11 @@ builder.Services.ConfigureAmazonSQS(builder.Configuration);
 #endregion
 
 // ✅ Serviços
-builder.Services.AddScoped<JwtService>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IUserGameLibraryRepository, UserGameLibraryRepository>();
-builder.Services.AddScoped<IUserGameLibraryServices, UserGameLibraryService>();
+builder.Services.AddTransient<JwtService>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IUserGameLibraryRepository, UserGameLibraryRepository>();
+builder.Services.AddTransient<IUserGameLibraryServices, UserGameLibraryService>();
 builder.Services.AddSwaggerConfiguration();
 builder.Services.ConfigureServices();
 

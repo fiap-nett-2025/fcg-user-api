@@ -7,6 +7,7 @@ using FCG.User.Domain.Entities;
 using FCG.User.Domain.Interfaces.Messaging;
 using FCG.User.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -20,14 +21,14 @@ namespace FCG.User.Application.Handlers
     {
         private readonly ILogger<AddGameInLibraryMessageHandler> _logger;
 
-        private readonly FCGDbContext _context;
+        private readonly IDbContextFactory<FCGDbContext> _contextFactory;
 
         public AddGameInLibraryMessageHandler(
             ILogger<AddGameInLibraryMessageHandler> logger,
-            FCGDbContext context)
+            IDbContextFactory<FCGDbContext> contextFactory)
         {
             _logger = logger;
-            _context = context;
+            _contextFactory = contextFactory;
         }
 
         public async Task HandleAsync(AddGameInLibraryDTO message, CancellationToken cancellationToken = default)
@@ -39,6 +40,8 @@ namespace FCG.User.Application.Handlers
             );
             try
             {
+                using var dbContext = _contextFactory.CreateDbContext();
+
                 foreach (var gameId in message.GamesId ?? Array.Empty<string>())
                 {
                     if (string.IsNullOrWhiteSpace(gameId))
@@ -46,13 +49,13 @@ namespace FCG.User.Application.Handlers
 
                     var entity = new UserGameLibrary(
                         message.UserId.ToString(),
-                    gameId
+                        gameId
                     );
 
-                    await _context.UserGameLibraries.AddAsync(entity, cancellationToken);
+                    await dbContext.UserGameLibraries.AddAsync(entity, cancellationToken);
                 }
 
-                await _context.SaveChangesAsync(cancellationToken);
+                await dbContext.SaveChangesAsync(cancellationToken);
 
                 _logger.LogInformation(
                     "Finished AddGameInLibrary for user {UserId}",
