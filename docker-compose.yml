@@ -38,7 +38,7 @@ services:
       - rabbitmq_user
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings__DefaultConnection: "Server=sqlserver;Initial Catalog=FCG;User Id=sa;Password=FCG@admin;TrustServerCertificate=true"
+      ConnectionStrings__UserConnection: "Server=sqlserver;Initial Catalog=FCG;User Id=sa;Password=FCG@admin;TrustServerCertificate=true"
       RabbitMq__Settings__HostName: rabbitmq_user
 networks:
   my_custom_network:

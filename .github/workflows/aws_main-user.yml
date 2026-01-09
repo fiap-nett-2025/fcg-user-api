@@ -75,9 +75,10 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
       run: |
         mkdir -p rendered
+        envsubst < k8s/users-api-config.yaml > rendered/users-api-config.yaml
         envsubst < k8s/users-api-deployment.yaml > rendered/users-api-deployment.yaml
-        cp k8s/users-api-config.yaml rendered/users-api-config.yaml
-        cp k8s/users-api-service.yaml rendered/users-api-service.yaml
+        envsubst < k8s/users-api-hpa.yaml > rendered/users-api-hpa.yaml
+        envsubst < k8s/users-api-service.yaml > rendered/users-api-service.yaml
 
     # Deploy no Kubernetes
     - name: Apply Kubernetes manifests
