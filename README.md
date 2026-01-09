@@ -13,7 +13,8 @@ aplicada em cenários de estudo e práticas de cloud computing, microsserviços 
 
 O serviço de usuário é responsável por gerenciar os dados de usuários, niveis de acesso e biblioteca de jogos. Ele oferece funcionalidades para criar, ler, atualizar e deletar dados desses itens.
 
-## :envelope_with_arrow:  Messageria
+## :envelope_with_arrow: <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"> Messageria
+
 
 Nesse projeto fazemos a comunicação entre os microsserviços usando o Amazon SQS. Abaixo está a lista dos arquivos principais envolvidos com a messageria:
 - FCG.User.API/Worker.cs;
