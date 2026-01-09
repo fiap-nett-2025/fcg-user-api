@@ -20,6 +20,8 @@ Nesse projeto fazemos a comunicação entre os microsserviços usando o Amazon S
 - Pasta k8s (nessa pasta se encontram configMaps e arquivo de deployment);
 - FCG.User.Infra.Data.Messaging.Sqs.AmazonSqsConsumer.
 
+A API de Usuários consome mensagens da fila "user-game-library-added-queue".
+
 ## ⚙️ Tecnologias e Plataformas utilizadas
 
 - [.NET 8](https://dotnet.microsoft.com/download/dotnet/8.0)
