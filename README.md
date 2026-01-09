@@ -13,6 +13,13 @@ aplicada em cenários de estudo e práticas de cloud computing, microsserviços 
 
 O serviço de usuário é responsável por gerenciar os dados de usuários, niveis de acesso e biblioteca de jogos. Ele oferece funcionalidades para criar, ler, atualizar e deletar dados desses itens.
 
+## :envelope_with_arrow:  Messageria
+
+Nesse projeto fazemos a comunicação entre os microsserviços usando o Amazon SQS. Abaixo está a lista dos arquivos principais envolvidos com a messageria:
+- FCG.User.API/Worker.cs;
+- Pasta k8s (nessa pasta se encontram configMaps e arquivo de deployment);
+- FCG.User.Infra.Data.Messaging.Sqs.AmazonSqsConsumer.
+
 ## ⚙️ Tecnologias e Plataformas utilizadas
 
 - [.NET 8](https://dotnet.microsoft.com/download/dotnet/8.0)
